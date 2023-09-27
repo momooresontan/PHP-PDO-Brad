@@ -73,11 +73,28 @@
     // echo "Post added!";
 
     //UPDATE DATA
-    $id = 1;
-    $body = "This is the first post. But it is updated";
+    // $id = 1;
+    // $body = "This is the first post. But it is updated";
 
-    $sql = "UPDATE post SET body = :body WHERE id = :id";
+    // $sql = "UPDATE post SET body = :body WHERE id = :id";
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->execute(["id"=>$id, "body"=>$body]);
+    // echo "Post updated!";
+
+    //DELETE DATA
+    // $id = 7;
+
+    // $sql = "DELETE FROM post WHERE id = :id";
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->execute(["id"=>$id]);
+    // echo "Post deleted!";
+
+    //SERACH DATA
+    $search = "%post%";
+    $sql = "SELECT * FROM post WHERE title LIKE ?";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute(["id"=>$id, "body"=>$body]);
-    echo "Post updated!";
+    $stmt->execute([$search]);
+    $post = $stmt->fetchAll();
+ 
+    echo $post."<br>";
 ?>
