@@ -32,10 +32,10 @@
     $id = 1;
 
     //Positional Params
-    // $sql = "SELECT * FROM post WHERE author = ?";
-    // $stmt = $pdo->prepare($sql);
-    // $stmt->execute([$author]);
-    // $posts = $stmt->fetchAll();
+    $sql = "SELECT * FROM post WHERE author = ? && is_published = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$author, $is_published]);
+    $posts = $stmt->fetchAll();
 
     //Named Params
     // $sql = "SELECT * FROM post WHERE author = :author && is_published = :is_published";
@@ -44,9 +44,9 @@
     // $posts = $stmt->fetchAll();
 
     //var_dump($posts);
-    // foreach($posts as $post){
-    //     echo $post->title."<br>";
-    // }
+    foreach($posts as $post){
+        echo $post->title."<br>";
+    }
 
     // FETCH SINGLE POST
     // $sql = "SELECT * FROM post WHERE id = :id";
@@ -90,11 +90,13 @@
     // echo "Post deleted!";
 
     //SERACH DATA
-    $search = "%post%";
-    $sql = "SELECT * FROM post WHERE title LIKE ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$search]);
-    $post = $stmt->fetchAll();
+    // $search = "%t%";
+    // $sql = "SELECT * FROM post WHERE title LIKE ?";
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->execute([$search]);
+    // $posts = $stmt->fetchAll();
  
-    echo $post."<br>";
+    // foreach($posts as $post){
+    //     echo $post->title ."<br>";
+    // }
 ?>
