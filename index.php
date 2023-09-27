@@ -49,10 +49,26 @@
     // }
 
     // FETCH SINGLE POST
-    $sql = "SELECT * FROM post WHERE id = :id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(["id" => $id]);
-    $post = $stmt->fetch();
+    // $sql = "SELECT * FROM post WHERE id = :id";
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->execute(["id" => $id]);
+    // $post = $stmt->fetch();
 
-    echo $post->body."<br>";
+    // echo $post->body."<br>";
+
+    //GET ROW COUNT
+    // $stmt = $pdo->prepare("SELECT * FROM post WHERE author = ?");
+    // $stmt->execute([$author]);
+    // $postCount = $stmt->rowCount();
+    // echo $postCount."<br>";
+
+    //INSERT DATA
+    $title = "Post 6";
+    $body = "This is the sixth post. You don dey go far oo";
+    $author = "Sammy";
+
+    $sql = "INERT INTO post(title, body, author) VALUES (:title, :body, :author)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(["title"=>$title, "body"=>$body, "author"=>$author]);
+    echo "Post added!";
 ?>
