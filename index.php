@@ -10,6 +10,7 @@
     $pdo = new PDO($dsn, $user, $password);
 
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 
     //PDO QUERY
     $stmt = $pdo->query("SELECT * FROM post");
@@ -30,11 +31,12 @@
     $author = "MoMo";
     $is_published = true;
     $id = 1;
+    $limit = 1;
 
     //Positional Params
-    $sql = "SELECT * FROM post WHERE author = ? && is_published = ?";
+    $sql = "SELECT * FROM post WHERE author = ? && is_published = ? LIMIT ?";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$author, $is_published]);
+    $stmt->execute([$author, $is_published, $limit]);
     $posts = $stmt->fetchAll();
 
     //Named Params
