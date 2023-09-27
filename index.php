@@ -63,12 +63,21 @@
     // echo $postCount."<br>";
 
     //INSERT DATA
-    $title = "Post 6";
-    $body = "This is the sixth post. You don dey go far oo";
-    $author = "Sammy";
+    // $title = "Post 6";
+    // $body = "This is the sixth post. You don dey go far oo";
+    // $author = "Sammy";
 
-    $sql = "INERT INTO post(title, body, author) VALUES (:title, :body, :author)";
+    // $sql = "INSERT INTO post(title, body, author) VALUES (:title, :body, :author)";
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->execute(["title"=>$title, "body"=>$body, "author"=>$author]);
+    // echo "Post added!";
+
+    //UPDATE DATA
+    $id = 1;
+    $body = "This is the first post. But it is updated";
+
+    $sql = "UPDATE post SET body = :body WHERE id = :id";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute(["title"=>$title, "body"=>$body, "author"=>$author]);
-    echo "Post added!";
+    $stmt->execute(["id"=>$id, "body"=>$body]);
+    echo "Post updated!";
 ?>
