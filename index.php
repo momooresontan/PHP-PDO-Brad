@@ -17,7 +17,14 @@
     // while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     //     echo $row['title']."<br>";
     // }
-    while($row = $stmt->fetch(PDO::FETCH_OBJ)){
-        echo $row->title."<br>";
-    }
+    // while($row = $stmt->fetch(PDO::FETCH_OBJ)){
+    //     echo $row->title."<br>";
+    // }
+
+    //Prepared Statements(prepare & execute)
+
+    //UNSAFE
+    $sql = "SELECT * FROM post WHERE author = '$author'";
+
+
 ?>
