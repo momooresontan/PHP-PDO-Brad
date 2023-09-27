@@ -24,7 +24,26 @@
     //Prepared Statements(prepare & execute)
 
     //UNSAFE
-    $sql = "SELECT * FROM post WHERE author = '$author'";
+    //$sql = "SELECT * FROM post WHERE author = '$author'";
 
+    //FETCH MULTIPLE POSTS
+    $author = "Murray";
+    $is_published = true;
 
+    //Positional Params
+    // $sql = "SELECT * FROM post WHERE author = ?";
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->execute([$author]);
+    // $posts = $stmt->fetchAll();
+
+    //Named Params
+    $sql = "SELECT * FROM post WHERE author = :author";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(["author" => $author]);
+    $posts = $stmt->fetchAll();
+
+    //var_dump($posts);
+    foreach($posts as $post){
+        echo $post->title."<br>";
+    }
 ?>
