@@ -27,8 +27,9 @@
     //$sql = "SELECT * FROM post WHERE author = '$author'";
 
     //FETCH MULTIPLE POSTS
-    $author = "Murray";
+    $author = "MoMo";
     $is_published = true;
+    $id = 1;
 
     //Positional Params
     // $sql = "SELECT * FROM post WHERE author = ?";
@@ -37,13 +38,21 @@
     // $posts = $stmt->fetchAll();
 
     //Named Params
-    $sql = "SELECT * FROM post WHERE author = :author";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(["author" => $author]);
-    $posts = $stmt->fetchAll();
+    // $sql = "SELECT * FROM post WHERE author = :author && is_published = :is_published";
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->execute(["author" => $author, "is_published" => $is_published]);
+    // $posts = $stmt->fetchAll();
 
     //var_dump($posts);
-    foreach($posts as $post){
-        echo $post->title."<br>";
-    }
+    // foreach($posts as $post){
+    //     echo $post->title."<br>";
+    // }
+
+    // FETCH SINGLE POST
+    $sql = "SELECT * FROM post WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(["id" => $id]);
+    $post = $stmt->fetch();
+
+    echo $post->body."<br>";
 ?>
